@@ -1,0 +1,41 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: #1c1c1c;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+.game-container {
+    margin-top: 100px;
+}
+
+#multiplier-display {
+    font-size: 48px;
+    margin: 20px 0;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 18px;
+    margin: 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+}
+
+#bet-button {
+    background-color: #28a745;
+    color: white;
+}
+
+#cashout-button {
+    background-color: #ffc107;
+    color: black;
+}
+
+#result {
+    margin-top: 20px;
+    font-size: 24px;
+}

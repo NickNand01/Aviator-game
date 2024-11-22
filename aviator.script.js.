@@ -1,0 +1,53 @@
+const multiplierDisplay = document.getElementById("multiplier-display");
+const betButton = document.getElementById("bet-button");
+const cashoutButton = document.getElementById("cashout-button");
+const resultDisplay = document.getElementById("result");
+
+let multiplier = 1.0;
+let gameActive = false;
+let crashPoint = 0;
+
+function startGame() {
+    gameActive = true;
+    multiplier = 1.0;
+    crashPoint = (Math.random() * 5 + 1).toFixed(2); // Define o ponto de queda aleatório entre 1.00 e 6.00
+    betButton.disabled = true;
+    cashoutButton.disabled = false;
+    resultDisplay.textContent = "";
+
+    const interval = setInterval(() => {
+        if (!gameActive) {
+            clearInterval(interval);
+            return;
+        }
+
+        multiplier += 0.1;
+        multiplierDisplay.textContent = multiplier.toFixed(2) + "x";
+
+        if (multiplier >= crashPoint) {
+            endGame(false);
+            clearInterval(interval);
+        }
+    }, 100);
+}
+
+function cashOut() {
+    if (gameActive) {
+        endGame(true);
+    }
+}
+
+function endGame(won) {
+    gameActive = false;
+    betButton.disabled = false;
+    cashoutButton.disabled = true;
+
+    if (won) {
+        resultDisplay.textContent = `Você sacou em ${multiplier.toFixed(2)}x! Parabéns!`;
+    } else {
+        resultDisplay.textContent = `O avião caiu em ${crashPoint}x! Você perdeu!`;
+    }
+}
+
+betButton.addEventListener("click", startGame);
+cashoutButton.addEventListener("click", cashOut);
